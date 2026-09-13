@@ -1,15 +1,48 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDownRight, ArrowRight, CheckCircle2, Code2, Database, Download, ExternalLink, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Moon, Phone, Send, ServerCog, ShieldCheck, Sun, Terminal, X } from "lucide-react";
+import {
+  ArrowDownRight,
+  ArrowRight,
+  CheckCircle2,
+  Code2,
+  Database,
+  Download,
+  ExternalLink,
+  Github,
+  GraduationCap,
+  Layers3,
+  Linkedin,
+  Mail,
+  Menu,
+  Moon,
+  Phone,
+  Send,
+  ServerCog,
+  ShieldCheck,
+  Sun,
+  Terminal,
+  X,
+} from "lucide-react";
 import { useEffect, useState, type FormEvent } from "react";
 
 export const Route = createFileRoute("/")({
-  head: () => ({ meta: [
-    { title: "Abdhullah Noufal | Aspiring Software Engineer" },
-    { name: "description", content: "Full-stack developer and University of Moratuwa IT undergraduate seeking a Software Engineering Internship." },
-    { property: "og:title", content: "Abdhullah Noufal | Aspiring Software Engineer" },
-    { property: "og:description", content: "Explore Abdhullah's full-stack projects, technical skills, and software engineering journey." },
-    { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
-  ] }),
+  head: () => ({
+    meta: [
+      { title: "Abdhullah Noufal | Aspiring Software Engineer" },
+      {
+        name: "description",
+        content:
+          "Full-stack developer and University of Moratuwa IT undergraduate seeking a Software Engineering Internship.",
+      },
+      { property: "og:title", content: "Abdhullah Noufal | Aspiring Software Engineer" },
+      {
+        property: "og:description",
+        content:
+          "Explore Abdhullah's full-stack projects, technical skills, and software engineering journey.",
+      },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+    ],
+  }),
   component: Index,
 });
 
@@ -21,17 +54,88 @@ const skillGroups = [
   { title: "Data & delivery", items: ["MySQL", "MSSQL", "MongoDB", "Git", "Docker"] },
 ];
 const projects = [
-  { number: "01", title: "Auto Matrix", kicker: "Second Year Software Project", role: "Full-Stack Developer", description: "A MERN multi-vendor marketplace for vehicle parts, designed around part compatibility, role-aware workflows, and automated order management.", features: ["Multi-vendor architecture", "Vehicle-specific compatibility", "Role-based access", "REST API architecture", "Docker deployment", "GitHub Actions / CI/CD"], stack: ["React", "Node.js", "Express.js", "TypeScript", "MongoDB", "Docker"], featured: true },
-  { number: "02", title: "Social Media Post Automation", kicker: "Individual Project", role: "Under development", description: "A MERN application for scheduling posts across social accounts. The current build covers post creation, account selection, and scheduling interfaces.", features: ["Post creation interface", "Account selection", "Scheduling management"], stack: ["React", "Node.js", "Express.js", "TypeScript", "MongoDB"], featured: false },
-  { number: "03", title: "Green Cart", kicker: "Grocery E-Commerce · Individual Project", role: "Backend Developer", description: "The backend for a grocery e-commerce platform, covering products, users, orders, and inventory through RESTful APIs and database integration.", features: ["Product management", "User management", "Order management", "Inventory operations"], stack: ["Node.js", "Express.js", "MongoDB", "Mongoose", "JavaScript"], featured: false },
+  {
+    number: "01",
+    title: "Auto Matrix",
+    kicker: "Second Year Software Project",
+    role: "Full-Stack Developer",
+    description:
+      "A MERN multi-vendor marketplace for vehicle parts, designed around part compatibility, role-aware workflows, and automated order management.",
+    features: [
+      "Multi-vendor architecture",
+      "Vehicle-specific compatibility",
+      "Role-based access",
+      "REST API architecture",
+      "Docker deployment",
+      "GitHub Actions / CI/CD",
+    ],
+    stack: ["React", "Node.js", "Express.js", "TypeScript", "MongoDB", "Docker"],
+    featured: true,
+  },
+  {
+    number: "02",
+    title: "Social Media Post Automation",
+    kicker: "Individual Project",
+    role: "Under development",
+    description:
+      "A MERN application for scheduling posts across social accounts. The current build covers post creation, account selection, and scheduling interfaces.",
+    features: ["Post creation interface", "Account selection", "Scheduling management"],
+    stack: ["React", "Node.js", "Express.js", "TypeScript", "MongoDB"],
+    featured: false,
+  },
+  {
+    number: "03",
+    title: "Green Cart",
+    kicker: "Grocery E-Commerce · Individual Project",
+    role: "Backend Developer",
+    description:
+      "The backend for a grocery e-commerce platform, covering products, users, orders, and inventory through RESTful APIs and database integration.",
+    features: ["Product management", "User management", "Order management", "Inventory operations"],
+    stack: ["Node.js", "Express.js", "MongoDB", "Mongoose", "JavaScript"],
+    featured: false,
+  },
 ];
 
-function Logo() { return <a href="#home" className="font-display text-lg font-bold text-foreground" aria-label="Abdhullah Noufal, home">AN<span className="text-coral">.</span></a>; }
-function SectionHeading({ eyebrow, title, body }: { eyebrow: string; title: string; body?: string }) { return <div className="mb-12 grid gap-4 md:grid-cols-2 md:items-end"><div><p className="mb-3 font-mono text-xs uppercase text-coral">// {eyebrow}</p><h2 className="text-3xl font-semibold text-foreground sm:text-5xl">{title}</h2></div>{body && <p className="max-w-xl text-sm leading-7 text-muted-foreground md:justify-self-end">{body}</p>}</div>; }
+function Logo() {
+  return (
+    <a
+      href="#home"
+      className="font-display text-lg font-bold text-foreground"
+      aria-label="Abdhullah Noufal, home"
+    >
+      AN<span className="text-coral">.</span>
+    </a>
+  );
+}
+function SectionHeading({
+  eyebrow,
+  title,
+  body,
+}: {
+  eyebrow: string;
+  title: string;
+  body?: string;
+}) {
+  return (
+    <div className="mb-12 grid gap-4 md:grid-cols-2 md:items-end">
+      <div>
+        <p className="mb-3 font-mono text-xs uppercase text-coral">// {eyebrow}</p>
+        <h2 className="text-3xl font-semibold text-foreground sm:text-5xl">{title}</h2>
+      </div>
+      {body && (
+        <p className="max-w-xl text-sm leading-7 text-muted-foreground md:justify-self-end">
+          {body}
+        </p>
+      )}
+    </div>
+  );
+}
 
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formError, setFormError] = useState("");
+  const [formSuccess, setFormSuccess] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [lightMode, setLightMode] = useState(false);
   useEffect(() => {
     const savedTheme = window.localStorage.getItem("portfolio-theme");
@@ -45,36 +149,626 @@ function Index() {
     document.documentElement.classList.toggle("light", nextLightMode);
     window.localStorage.setItem("portfolio-theme", nextLightMode ? "light" : "dark");
   };
-  const submitContact = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault(); const form = new FormData(event.currentTarget);
-    const name = String(form.get("name") ?? "").trim(); const email = String(form.get("email") ?? "").trim(); const subject = String(form.get("subject") ?? "").trim(); const message = String(form.get("message") ?? "").trim();
-    if (!name || name.length > 100 || !/^\S+@\S+\.\S+$/.test(email) || email.length > 255 || !subject || subject.length > 120 || !message || message.length > 1500) { setFormError("Please complete every field with a valid email and keep the message under 1,500 characters."); return; }
-    setFormError(""); window.location.href = `mailto:abdnou076@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+  const submitContact = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const subject = String(form.get("subject") ?? "").trim();
+    const message = String(form.get("message") ?? "").trim();
+    setFormError("");
+    setFormSuccess("");
+    if (
+      !name ||
+      name.length > 100 ||
+      !/^\S+@\S+\.\S+$/.test(email) ||
+      email.length > 255 ||
+      !subject ||
+      subject.length > 120 ||
+      !message ||
+      message.length > 1500
+    ) {
+      setFormError(
+        "Please complete every field with a valid email and keep the message under 1,500 characters.",
+      );
+      return;
+    }
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("https://formspree.io/f/xnpqkjyv", {
+        method: "POST",
+        body: form,
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error("Form submission failed");
+      setFormSuccess("Thanks for your message. I will get back to you soon.");
+      formElement.reset();
+    } catch {
+      setFormError("Your message could not be sent. Please try again or email me directly.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
-  return <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl"><nav className="section-shell flex h-18 items-center justify-between" aria-label="Main navigation"><Logo /><div className="hidden items-center gap-7 md:flex">{navItems.map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground">{item}</a>)}<button type="button" onClick={toggleTheme} className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-cyan hover:text-cyan" aria-label={lightMode ? "Switch to dark theme" : "Switch to light theme"} title={lightMode ? "Switch to dark theme" : "Switch to light theme"}>{lightMode ? <Moon className="size-4" /> : <Sun className="size-4" />}</button></div><a href="/Abdhullah-Noufal-CV.pdf" download className="hidden items-center gap-2 rounded-md border border-border px-4 py-2 text-xs font-semibold hover:border-coral hover:text-coral md:flex"><Download className="size-4" /> Download CV</a><button type="button" onClick={() => setMenuOpen(!menuOpen)} className="grid size-10 place-items-center rounded-md border border-border md:hidden" aria-label="Toggle navigation" aria-expanded={menuOpen}>{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button></nav>{menuOpen && <div className="border-t border-border bg-background px-4 py-5 md:hidden">{navItems.map(item => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block border-b border-border py-3 text-sm font-semibold">{item}</a>)}<button type="button" onClick={toggleTheme} className="flex w-full items-center gap-2 border-b border-border py-3 text-left text-sm font-semibold text-cyan" aria-label={lightMode ? "Switch to dark theme" : "Switch to light theme"}>{lightMode ? <Moon className="size-4" /> : <Sun className="size-4" />}{lightMode ? "Dark theme" : "Light theme"}</button><a href="/Abdhullah-Noufal-CV.pdf" download onClick={() => setMenuOpen(false)} className="flex items-center gap-2 py-3 text-sm font-semibold text-coral"><Download className="size-4" /> Download CV</a></div>}</header>
+  return (
+    <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl">
+        <nav
+          className="section-shell flex h-18 items-center justify-between"
+          aria-label="Main navigation"
+        >
+          <Logo />
+          <div className="hidden items-center gap-7 md:flex">
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              >
+                {item}
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-cyan hover:text-cyan"
+              aria-label={lightMode ? "Switch to dark theme" : "Switch to light theme"}
+              title={lightMode ? "Switch to dark theme" : "Switch to light theme"}
+            >
+              {lightMode ? <Moon className="size-4" /> : <Sun className="size-4" />}
+            </button>
+          </div>
+          <a
+            href="/Abdhullah-Noufal-CV.pdf"
+            download
+            className="hidden items-center gap-2 rounded-md border border-border px-4 py-2 text-xs font-semibold hover:border-coral hover:text-coral md:flex"
+          >
+            <Download className="size-4" /> Download CV
+          </a>
+          <button
+            type="button"
+            onClick={() => setMenuOpen(!menuOpen)}
+            className="grid size-10 place-items-center rounded-md border border-border md:hidden"
+            aria-label="Toggle navigation"
+            aria-expanded={menuOpen}
+          >
+            {menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+          </button>
+        </nav>
+        {menuOpen && (
+          <div className="border-t border-border bg-background px-4 py-5 md:hidden">
+            {navItems.map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setMenuOpen(false)}
+                className="block border-b border-border py-3 text-sm font-semibold"
+              >
+                {item}
+              </a>
+            ))}
+            <button
+              type="button"
+              onClick={toggleTheme}
+              className="flex w-full items-center gap-2 border-b border-border py-3 text-left text-sm font-semibold text-cyan"
+              aria-label={lightMode ? "Switch to dark theme" : "Switch to light theme"}
+            >
+              {lightMode ? <Moon className="size-4" /> : <Sun className="size-4" />}
+              {lightMode ? "Dark theme" : "Light theme"}
+            </button>
+            <a
+              href="/Abdhullah-Noufal-CV.pdf"
+              download
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-2 py-3 text-sm font-semibold text-coral"
+            >
+              <Download className="size-4" /> Download CV
+            </a>
+          </div>
+        )}
+      </header>
 
-    <main>
-      <section id="home" className="section-shell relative grid min-h-[min(920px,100svh)] items-center gap-12 pb-20 pt-28 lg:grid-cols-[1.08fr_.92fr]">
-        <div className="rise-in relative z-10"><div className="mb-7 inline-flex items-center gap-2 rounded-full border border-coral/30 bg-coral/10 px-3 py-1.5 text-xs font-semibold text-coral"><span className="size-2 rounded-full bg-coral" /> Seeking a Software Engineering Internship</div><p className="mb-4 font-mono text-sm text-cyan">Hello, I&apos;m</p><h1 className="text-5xl font-bold leading-[.98] sm:text-7xl lg:text-[5.5rem]">Abdhullah<br /><span className="text-coral">Noufal.</span></h1><p className="mt-6 text-lg font-semibold sm:text-xl">Aspiring Software Engineer <span className="text-muted-foreground">/</span> Full-Stack Developer</p><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">B.Sc. (Hons) in Information Technology student at the University of Moratuwa, passionate about building reliable software, solving challenging technical problems, and continuously improving engineering practices.</p><div className="mt-8 flex flex-wrap gap-3"><a href="#projects" className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5">View my projects <ArrowDownRight className="size-4" /></a><a href="#contact" className="inline-flex items-center gap-2 rounded-md border border-border bg-secondary px-5 py-3 text-sm font-bold transition-colors hover:border-cyan">Contact me <ArrowRight className="size-4" /></a></div><div className="mt-9 flex items-center gap-4 text-muted-foreground"><a href="https://github.com/abdhullah-mn" target="_blank" rel="noreferrer" aria-label="GitHub" className="hover:text-cyan"><Github className="size-5" /></a><a href="https://www.linkedin.com/in/abdhullah-noufal-042408336" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="hover:text-cyan"><Linkedin className="size-5" /></a><a href="mailto:abdnou076@gmail.com" aria-label="Email" className="hover:text-cyan"><Mail className="size-5" /></a><span className="h-px w-12 bg-border" /><span className="font-mono text-[11px]">Colombo, Sri Lanka</span></div></div>
-        <div className="relative mx-auto w-full max-w-lg rise-in [animation-delay:140ms]"><div className="absolute -right-4 -top-4 size-24 border-r border-t border-cyan/50" /><div className="glass-panel relative rounded-lg p-6 sm:p-8"><img src="https://i.postimg.cc/wjL2wW42/my-portfolio-image.jpg" alt="Abdhullah Noufal" className="mx-auto aspect-square w-full max-w-[22rem] rounded-full object-cover" /><div className="mt-6 rounded-md border border-border bg-background/80 p-4 backdrop-blur-md"><div className="mb-3 flex items-center gap-2 text-[10px] text-muted-foreground"><span className="size-2 rounded-full bg-coral" /><span className="size-2 rounded-full bg-accent" /><span className="size-2 rounded-full bg-muted-foreground" /><span className="ml-2 font-mono">profile.ts</span></div><code className="block font-mono text-[11px] leading-6 text-muted-foreground"><span className="text-coral">const</span> focus = <span className="text-cyan">&quot;full-stack engineering&quot;</span>;<br /><span className="text-coral">const</span> mindset = <span className="text-cyan">&quot;build, learn, improve&quot;</span>;<span className="cursor-blink text-coral">_</span></code></div></div></div>
-      </section>
+      <main>
+        <section
+          id="home"
+          className="section-shell relative grid min-h-[min(920px,100svh)] items-center gap-12 pb-20 pt-28 lg:grid-cols-[1.08fr_.92fr]"
+        >
+          <div className="rise-in relative z-10">
+            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-coral/30 bg-coral/10 px-3 py-1.5 text-xs font-semibold text-coral">
+              <span className="size-2 rounded-full bg-coral" /> Seeking a Software Engineering
+              Internship
+            </div>
+            <p className="mb-4 font-mono text-sm text-cyan">Hello, I&apos;m</p>
+            <h1 className="text-5xl font-bold leading-[.98] sm:text-7xl lg:text-[5.5rem]">
+              Abdhullah
+              <br />
+              <span className="text-coral">Noufal.</span>
+            </h1>
+            <p className="mt-6 text-lg font-semibold sm:text-xl">
+              Aspiring Software Engineer <span className="text-muted-foreground">/</span> Full-Stack
+              Developer
+            </p>
+            <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+              B.Sc. (Hons) in Information Technology student at the University of Moratuwa,
+              passionate about building reliable software, solving challenging technical problems,
+              and continuously improving engineering practices.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href="#projects"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5"
+              >
+                View my projects <ArrowDownRight className="size-4" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-secondary px-5 py-3 text-sm font-bold transition-colors hover:border-cyan"
+              >
+                Contact me <ArrowRight className="size-4" />
+              </a>
+            </div>
+            <div className="mt-9 flex items-center gap-4 text-muted-foreground">
+              <a
+                href="https://github.com/abdhullah-mn"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+                className="hover:text-cyan"
+              >
+                <Github className="size-5" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/abdhullah-noufal-042408336"
+                target="_blank"
+                rel="noreferrer"
+                aria-label="LinkedIn"
+                className="hover:text-cyan"
+              >
+                <Linkedin className="size-5" />
+              </a>
+              <a href="mailto:abdnou076@gmail.com" aria-label="Email" className="hover:text-cyan">
+                <Mail className="size-5" />
+              </a>
+              <span className="h-px w-12 bg-border" />
+              <span className="font-mono text-[11px]">Colombo, Sri Lanka</span>
+            </div>
+          </div>
+          <div className="relative mx-auto w-full max-w-lg rise-in [animation-delay:140ms]">
+            <div className="absolute -right-4 -top-4 size-24 border-r border-t border-cyan/50" />
+            <div className="glass-panel relative rounded-lg p-6 sm:p-8">
+              <img
+                src="https://i.postimg.cc/wjL2wW42/my-portfolio-image.jpg"
+                alt="Abdhullah Noufal"
+                className="mx-auto aspect-square w-full max-w-[22rem] rounded-full object-cover"
+              />
+              <div className="mt-6 rounded-md border border-border bg-background/80 p-4 backdrop-blur-md">
+                <div className="mb-3 flex items-center gap-2 text-[10px] text-muted-foreground">
+                  <span className="size-2 rounded-full bg-coral" />
+                  <span className="size-2 rounded-full bg-accent" />
+                  <span className="size-2 rounded-full bg-muted-foreground" />
+                  <span className="ml-2 font-mono">profile.ts</span>
+                </div>
+                <code className="block font-mono text-[11px] leading-6 text-muted-foreground">
+                  <span className="text-coral">const</span> focus ={" "}
+                  <span className="text-cyan">&quot;full-stack engineering&quot;</span>;<br />
+                  <span className="text-coral">const</span> mindset ={" "}
+                  <span className="text-cyan">&quot;build, learn, improve&quot;</span>;
+                  <span className="cursor-blink text-coral">_</span>
+                </code>
+              </div>
+            </div>
+          </div>
+        </section>
 
-      <section id="about" className="border-y border-border bg-surface/40 py-24 sm:py-32"><div className="section-shell"><SectionHeading eyebrow="About" title="Engineering curiosity, grounded in practice." body="More than a list of tools: a growing engineering mindset shaped by hands-on building, careful problem solving, and a commitment to maintainable software." /><div className="grid gap-5 lg:grid-cols-[1.25fr_.75fr]"><article className="glass-panel rounded-lg p-7 sm:p-9"><p className="text-lg leading-8 text-secondary-foreground">I&apos;m an Information Technology undergraduate at the <strong className="text-foreground">University of Moratuwa</strong> with a strong interest in software engineering and full-stack development. I enjoy turning technical problems into reliable, readable solutions across interfaces, APIs, and data.</p><p className="mt-6 text-sm leading-7 text-muted-foreground">I&apos;m currently seeking my first Software Engineering Internship—a place to contribute to real projects, collaborate with experienced developers, and keep improving how I design and build software.</p><div className="mt-8 flex flex-wrap gap-2">{["Problem solving", "Reliable software", "Clean code", "SOLID principles", "Continuous learning"].map(tag => <span key={tag} className="rounded border border-border bg-secondary px-3 py-2 font-mono text-xs text-muted-foreground">{tag}</span>)}</div></article><article className="rounded-lg border border-border bg-card p-7 sm:p-9"><div className="flex items-start justify-between"><GraduationCap className="size-8 text-cyan" /><span className="rounded-full bg-cyan/10 px-3 py-1 font-mono text-[10px] font-bold uppercase text-cyan">Currently studying</span></div><p className="mt-12 font-mono text-xs text-coral">2024 — 2028</p><h3 className="mt-3 text-2xl font-semibold">B.Sc. (Hons) in Information Technology</h3><p className="mt-3 text-sm text-muted-foreground">University of Moratuwa</p><div className="mt-8 border-t border-border pt-5"><p className="text-xs text-muted-foreground">Expected graduation</p><p className="mt-1 font-semibold">May 2028</p></div></article></div></div></section>
+        <section id="about" className="border-y border-border bg-surface/40 py-24 sm:py-32">
+          <div className="section-shell">
+            <SectionHeading
+              eyebrow="About"
+              title="Engineering curiosity, grounded in practice."
+              body="More than a list of tools: a growing engineering mindset shaped by hands-on building, careful problem solving, and a commitment to maintainable software."
+            />
+            <div className="grid gap-5 lg:grid-cols-[1.25fr_.75fr]">
+              <article className="glass-panel rounded-lg p-7 sm:p-9">
+                <p className="text-lg leading-8 text-secondary-foreground">
+                  I&apos;m an Information Technology undergraduate at the{" "}
+                  <strong className="text-foreground">University of Moratuwa</strong> with a strong
+                  interest in software engineering and full-stack development. I enjoy turning
+                  technical problems into reliable, readable solutions across interfaces, APIs, and
+                  data.
+                </p>
+                <p className="mt-6 text-sm leading-7 text-muted-foreground">
+                  I&apos;m currently seeking my first Software Engineering Internship—a place to
+                  contribute to real projects, collaborate with experienced developers, and keep
+                  improving how I design and build software.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-2">
+                  {[
+                    "Problem solving",
+                    "Reliable software",
+                    "Clean code",
+                    "SOLID principles",
+                    "Continuous learning",
+                  ].map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded border border-border bg-secondary px-3 py-2 font-mono text-xs text-muted-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </article>
+              <article className="rounded-lg border border-border bg-card p-7 sm:p-9">
+                <div className="flex items-start justify-between">
+                  <GraduationCap className="size-8 text-cyan" />
+                  <span className="rounded-full bg-cyan/10 px-3 py-1 font-mono text-[10px] font-bold uppercase text-cyan">
+                    Currently studying
+                  </span>
+                </div>
+                <p className="mt-12 font-mono text-xs text-coral">2024 — 2028</p>
+                <h3 className="mt-3 text-2xl font-semibold">
+                  B.Sc. (Hons) in Information Technology
+                </h3>
+                <p className="mt-3 text-sm text-muted-foreground">University of Moratuwa</p>
+                <div className="mt-8 border-t border-border pt-5">
+                  <p className="text-xs text-muted-foreground">Expected graduation</p>
+                  <p className="mt-1 font-semibold">May 2028</p>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
 
-      <section id="skills" className="section-shell py-24 sm:py-32"><SectionHeading eyebrow="Technical foundation" title="Tools for the full stack." body="A broad programming foundation with particular emphasis on the JavaScript and TypeScript ecosystem." /><div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-2">{skillGroups.map((group, index) => <article key={group.title} className="bg-background p-7 transition-colors hover:bg-card sm:p-8"><div className="mb-8 flex items-center justify-between"><h3 className="text-lg font-semibold">{group.title}</h3><span className="font-mono text-xs text-muted-foreground">0{index + 1}</span></div><div className="flex flex-wrap gap-2">{group.items.map(skill => <span key={skill} className={`rounded-md border px-3 py-2 text-xs font-semibold transition-colors hover:border-cyan hover:text-cyan ${["JavaScript", "TypeScript", "React.js", "Node.js"].includes(skill) ? "border-coral/40 bg-coral/10 text-coral" : "border-border bg-secondary"}`}>{skill}</span>)}</div></article>)}</div></section>
+        <section id="skills" className="section-shell py-24 sm:py-32">
+          <SectionHeading
+            eyebrow="Technical foundation"
+            title="Tools for the full stack."
+            body="A broad programming foundation with particular emphasis on the JavaScript and TypeScript ecosystem."
+          />
+          <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-2">
+            {skillGroups.map((group, index) => (
+              <article
+                key={group.title}
+                className="bg-background p-7 transition-colors hover:bg-card sm:p-8"
+              >
+                <div className="mb-8 flex items-center justify-between">
+                  <h3 className="text-lg font-semibold">{group.title}</h3>
+                  <span className="font-mono text-xs text-muted-foreground">0{index + 1}</span>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {group.items.map((skill) => (
+                    <span
+                      key={skill}
+                      className={`rounded-md border px-3 py-2 text-xs font-semibold transition-colors hover:border-cyan hover:text-cyan ${["JavaScript", "TypeScript", "React.js", "Node.js"].includes(skill) ? "border-coral/40 bg-coral/10 text-coral" : "border-border bg-secondary"}`}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
 
-      <section id="projects" className="border-y border-border bg-surface/40 py-24 sm:py-32"><div className="section-shell"><SectionHeading eyebrow="Selected work" title="Projects that show the work." body="Practical applications spanning full-stack architecture, frontend product thinking, backend APIs, databases, and delivery workflows." /><div className="space-y-5">{projects.map(project => <article key={project.title} className={`group rounded-lg border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/50 sm:p-9 ${project.featured ? "border-coral/50" : "border-border"}`}><div className="grid gap-8 lg:grid-cols-[.8fr_1.4fr_.8fr]"><div><p className="font-mono text-xs text-coral">{project.number} / {project.kicker}</p><h3 className="mt-4 text-3xl font-semibold">{project.title}</h3><p className="mt-3 inline-flex rounded-full border border-border px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">{project.role}</p></div><div><p className="text-sm leading-7 text-muted-foreground">{project.description}</p><ul className="mt-6 grid gap-2 sm:grid-cols-2">{project.features.map(feature => <li key={feature} className="flex items-center gap-2 text-xs"><CheckCircle2 className="size-3.5 text-cyan" />{feature}</li>)}</ul></div><div className="flex flex-col justify-between gap-7"><div className="flex flex-wrap gap-1.5">{project.stack.map(item => <span key={item} className="rounded border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground group-hover:text-foreground">{item}</span>)}</div><a href="https://github.com/abdhullah-mn" target="_blank" rel="noreferrer" className="inline-flex items-center justify-between border-t border-border pt-4 text-xs font-bold hover:text-cyan">View GitHub profile <ExternalLink className="size-4" /></a></div></div></article>)}</div></div></section>
+        <section id="projects" className="border-y border-border bg-surface/40 py-24 sm:py-32">
+          <div className="section-shell">
+            <SectionHeading
+              eyebrow="Selected work"
+              title="Projects that show the work."
+              body="Practical applications spanning full-stack architecture, frontend product thinking, backend APIs, databases, and delivery workflows."
+            />
+            <div className="space-y-5">
+              {projects.map((project) => (
+                <article
+                  key={project.title}
+                  className={`group rounded-lg border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/50 sm:p-9 ${project.featured ? "border-coral/50" : "border-border"}`}
+                >
+                  <div className="grid gap-8 lg:grid-cols-[.8fr_1.4fr_.8fr]">
+                    <div>
+                      <p className="font-mono text-xs text-coral">
+                        {project.number} / {project.kicker}
+                      </p>
+                      <h3 className="mt-4 text-3xl font-semibold">{project.title}</h3>
+                      <p className="mt-3 inline-flex rounded-full border border-border px-3 py-1 font-mono text-[10px] uppercase text-muted-foreground">
+                        {project.role}
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm leading-7 text-muted-foreground">
+                        {project.description}
+                      </p>
+                      <ul className="mt-6 grid gap-2 sm:grid-cols-2">
+                        {project.features.map((feature) => (
+                          <li key={feature} className="flex items-center gap-2 text-xs">
+                            <CheckCircle2 className="size-3.5 text-cyan" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="flex flex-col justify-between gap-7">
+                      <div className="flex flex-wrap gap-1.5">
+                        {project.stack.map((item) => (
+                          <span
+                            key={item}
+                            className="rounded border border-border px-2 py-1 font-mono text-[10px] text-muted-foreground group-hover:text-foreground"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                      <a
+                        href="https://github.com/abdhullah-mn"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="inline-flex items-center justify-between border-t border-border pt-4 text-xs font-bold hover:text-cyan"
+                      >
+                        View GitHub profile <ExternalLink className="size-4" />
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
 
-      <section id="services" className="section-shell py-24 sm:py-32"><SectionHeading eyebrow="Specialization" title="Full-stack, end to end." body="The ability to contribute across the layers of a modern web application—from interface decisions to APIs, data, and containerized delivery." /><div className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]"><article className="rounded-lg border border-coral/40 bg-card p-8 sm:p-10"><Layers3 className="size-9 text-coral" /><h3 className="mt-10 text-3xl font-semibold">Full-Stack Development</h3><p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">Building cohesive web applications across React interfaces, Node and Laravel backends, REST APIs, databases, and Docker-based delivery environments.</p><div className="mt-8 flex flex-wrap gap-2">{["React.js", "Next.js", "Node.js", "Express.js", "TypeScript", "MongoDB", "MySQL", "Laravel", "REST APIs", "Docker"].map(item => <span key={item} className="rounded border border-border bg-secondary px-3 py-2 font-mono text-xs">{item}</span>)}</div></article><div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-1">{[[Code2, "Frontend implementation", "Responsive, accessible interfaces built around clear product flows."], [ServerCog, "API & backend architecture", "Structured REST endpoints, authentication flows, and maintainable server logic."], [Database, "Data integration", "Application data modeled across relational and document databases."], [ShieldCheck, "Reliable delivery", "Version-controlled, containerized workflows with an eye toward CI/CD."]].map(([Icon, title, text]) => { const SkillIcon = Icon as typeof Code2; return <div key={String(title)} className="bg-background p-5"><SkillIcon className="size-5 text-cyan" /><h4 className="mt-4 text-sm font-semibold">{String(title)}</h4><p className="mt-2 text-xs leading-5 text-muted-foreground">{String(text)}</p></div>; })}</div></div></section>
+        <section id="services" className="section-shell py-24 sm:py-32">
+          <SectionHeading
+            eyebrow="Specialization"
+            title="Full-stack, end to end."
+            body="The ability to contribute across the layers of a modern web application—from interface decisions to APIs, data, and containerized delivery."
+          />
+          <div className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
+            <article className="rounded-lg border border-coral/40 bg-card p-8 sm:p-10">
+              <Layers3 className="size-9 text-coral" />
+              <h3 className="mt-10 text-3xl font-semibold">Full-Stack Development</h3>
+              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
+                Building cohesive web applications across React interfaces, Node and Laravel
+                backends, REST APIs, databases, and Docker-based delivery environments.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-2">
+                {[
+                  "React.js",
+                  "Next.js",
+                  "Node.js",
+                  "Express.js",
+                  "TypeScript",
+                  "MongoDB",
+                  "MySQL",
+                  "Laravel",
+                  "REST APIs",
+                  "Docker",
+                ].map((item) => (
+                  <span
+                    key={item}
+                    className="rounded border border-border bg-secondary px-3 py-2 font-mono text-xs"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </article>
+            <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-1">
+              {[
+                [
+                  Code2,
+                  "Frontend implementation",
+                  "Responsive, accessible interfaces built around clear product flows.",
+                ],
+                [
+                  ServerCog,
+                  "API & backend architecture",
+                  "Structured REST endpoints, authentication flows, and maintainable server logic.",
+                ],
+                [
+                  Database,
+                  "Data integration",
+                  "Application data modeled across relational and document databases.",
+                ],
+                [
+                  ShieldCheck,
+                  "Reliable delivery",
+                  "Version-controlled, containerized workflows with an eye toward CI/CD.",
+                ],
+              ].map(([Icon, title, text]) => {
+                const SkillIcon = Icon as typeof Code2;
+                return (
+                  <div key={String(title)} className="bg-background p-5">
+                    <SkillIcon className="size-5 text-cyan" />
+                    <h4 className="mt-4 text-sm font-semibold">{String(title)}</h4>
+                    <p className="mt-2 text-xs leading-5 text-muted-foreground">{String(text)}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </section>
 
-      <section className="border-y border-border bg-card py-20"><div className="section-shell grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-center"><div className="flex items-center gap-4"><Terminal className="size-7 text-cyan" /><p className="font-mono text-xs uppercase text-muted-foreground">Engineering philosophy</p></div><div><h2 className="text-4xl font-semibold sm:text-6xl">Build. <span className="text-coral">Learn.</span> Improve.</h2><p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">I aim to build reliable software, apply sound engineering principles, solve meaningful problems, and refine my practice through clean architecture and SOLID thinking.</p></div></div></section>
+        <section className="border-y border-border bg-card py-20">
+          <div className="section-shell grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
+            <div className="flex items-center gap-4">
+              <Terminal className="size-7 text-cyan" />
+              <p className="font-mono text-xs uppercase text-muted-foreground">
+                Engineering philosophy
+              </p>
+            </div>
+            <div>
+              <h2 className="text-4xl font-semibold sm:text-6xl">
+                Build. <span className="text-coral">Learn.</span> Improve.
+              </h2>
+              <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground">
+                I aim to build reliable software, apply sound engineering principles, solve
+                meaningful problems, and refine my practice through clean architecture and SOLID
+                thinking.
+              </p>
+            </div>
+          </div>
+        </section>
 
-      <section id="contact" className="section-shell py-24 sm:py-32"><SectionHeading eyebrow="Contact" title="Let’s build something meaningful." body="I'm currently looking for a Software Engineering Internship where I can contribute, learn from experienced engineers, and grow through real-world software development." /><div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]"><div><div className="space-y-5">{[[Mail, "Email", "abdnou076@gmail.com", "mailto:abdnou076@gmail.com"], [Phone, "Phone", "075 297 7706", "tel:+94752977706"], [Linkedin, "LinkedIn", "Connect professionally", "https://www.linkedin.com/in/abdhullah-noufal-042408336"], [Github, "GitHub", "Explore the code", "https://github.com/abdhullah-mn"]].map(([Icon, label, value, href]) => { const ContactIcon = Icon as typeof Mail; const external = String(href).startsWith("http"); return <a key={String(label)} href={String(href)} target={external ? "_blank" : undefined} rel={external ? "noreferrer" : undefined} className="group flex items-center gap-4 border-b border-border pb-5"><span className="grid size-10 place-items-center rounded-md bg-secondary text-cyan"><ContactIcon className="size-4" /></span><span><span className="block text-[10px] uppercase text-muted-foreground">{String(label)}</span><span className="mt-1 block text-sm font-semibold group-hover:text-cyan">{String(value)}</span></span><ArrowRight className="ml-auto size-4 text-muted-foreground" /></a>; })}</div><p className="mt-8 font-mono text-xs text-muted-foreground">Colombo, Sri Lanka · Open to internship opportunities</p></div><form onSubmit={submitContact} className="glass-panel rounded-lg p-6 sm:p-8" noValidate><div className="grid gap-5 sm:grid-cols-2"><Field name="name" label="Name" placeholder="Your name" maxLength={100} /><Field name="email" label="Email" placeholder="you@example.com" maxLength={255} type="email" /></div><Field name="subject" label="Subject" placeholder="Internship opportunity" maxLength={120} /><label className="mt-5 block text-xs font-semibold">Message<textarea name="message" maxLength={1500} required rows={5} className="mt-2 block w-full resize-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-hidden focus:border-cyan" placeholder="Tell me about the opportunity..." /></label>{formError && <p role="alert" className="mt-4 text-xs text-coral">{formError}</p>}<button type="submit" className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5">Send message <Send className="size-4" /></button><p className="mt-3 text-center text-[10px] text-muted-foreground">Opens your email app with the message prepared.</p></form></div></section>
-    </main>
-    <footer className="border-t border-border bg-card"><div className="section-shell flex flex-col gap-7 py-10 md:flex-row md:items-end md:justify-between"><div><Logo /><p className="mt-3 text-xs text-muted-foreground">B.Sc. (Hons) in IT Student · Aspiring Software Engineer · Full-Stack Developer</p></div><div className="flex flex-col gap-4 md:items-end"><div className="flex gap-4 text-muted-foreground"><a href="https://github.com/abdhullah-mn" aria-label="GitHub"><Github className="size-4" /></a><a href="https://www.linkedin.com/in/abdhullah-noufal-042408336" aria-label="LinkedIn"><Linkedin className="size-4" /></a><a href="mailto:abdnou076@gmail.com" aria-label="Email"><Mail className="size-4" /></a><a href="tel:+94752977706" aria-label="Phone"><Phone className="size-4" /></a></div><p className="font-mono text-[10px] text-muted-foreground">© 2026 Abdhullah Noufal. Built with purpose.</p></div></div></footer>
-  </div>;
+        <section id="contact" className="section-shell py-24 sm:py-32">
+          <SectionHeading
+            eyebrow="Contact"
+            title="Let’s build something meaningful."
+            body="I'm currently looking for a Software Engineering Internship where I can contribute, learn from experienced engineers, and grow through real-world software development."
+          />
+          <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
+            <div>
+              <div className="space-y-5">
+                {[
+                  [Mail, "Email", "abdnou076@gmail.com", "mailto:abdnou076@gmail.com"],
+                  [Phone, "Phone", "075 297 7706", "tel:+94752977706"],
+                  [
+                    Linkedin,
+                    "LinkedIn",
+                    "Connect professionally",
+                    "https://www.linkedin.com/in/abdhullah-noufal-042408336",
+                  ],
+                  [Github, "GitHub", "Explore the code", "https://github.com/abdhullah-mn"],
+                ].map(([Icon, label, value, href]) => {
+                  const ContactIcon = Icon as typeof Mail;
+                  const external = String(href).startsWith("http");
+                  return (
+                    <a
+                      key={String(label)}
+                      href={String(href)}
+                      target={external ? "_blank" : undefined}
+                      rel={external ? "noreferrer" : undefined}
+                      className="group flex items-center gap-4 border-b border-border pb-5"
+                    >
+                      <span className="grid size-10 place-items-center rounded-md bg-secondary text-cyan">
+                        <ContactIcon className="size-4" />
+                      </span>
+                      <span>
+                        <span className="block text-[10px] uppercase text-muted-foreground">
+                          {String(label)}
+                        </span>
+                        <span className="mt-1 block text-sm font-semibold group-hover:text-cyan">
+                          {String(value)}
+                        </span>
+                      </span>
+                      <ArrowRight className="ml-auto size-4 text-muted-foreground" />
+                    </a>
+                  );
+                })}
+              </div>
+              <p className="mt-8 font-mono text-xs text-muted-foreground">
+                Colombo, Sri Lanka · Open to internship opportunities
+              </p>
+            </div>
+            <form onSubmit={submitContact} className="glass-panel rounded-lg p-6 sm:p-8" noValidate>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <Field name="name" label="Name" placeholder="Your name" maxLength={100} />
+                <Field
+                  name="email"
+                  label="Email"
+                  placeholder="you@example.com"
+                  maxLength={255}
+                  type="email"
+                />
+              </div>
+              <Field
+                name="subject"
+                label="Subject"
+                placeholder="Internship opportunity"
+                maxLength={120}
+              />
+              <label className="mt-5 block text-xs font-semibold">
+                Message
+                <textarea
+                  name="message"
+                  maxLength={1500}
+                  required
+                  rows={5}
+                  className="mt-2 block w-full resize-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-hidden focus:border-cyan"
+                  placeholder="Tell me about the opportunity..."
+                />
+              </label>
+              {formError && (
+                <p role="alert" className="mt-4 text-xs text-coral">
+                  {formError}
+                </p>
+              )}
+              {formSuccess && (
+                <p role="status" className="mt-4 text-xs text-cyan">
+                  {formSuccess}
+                </p>
+              )}
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60"
+              >
+                {isSubmitting ? "Sending..." : "Send message"} <Send className="size-4" />
+              </button>
+              <p className="mt-3 text-center text-[10px] text-muted-foreground">
+                Your message will be sent securely through Formspree.
+              </p>
+            </form>
+          </div>
+        </section>
+      </main>
+      <footer className="border-t border-border bg-card">
+        <div className="section-shell flex flex-col gap-7 py-10 md:flex-row md:items-end md:justify-between">
+          <div>
+            <Logo />
+            <p className="mt-3 text-xs text-muted-foreground">
+              B.Sc. (Hons) in IT Student · Aspiring Software Engineer · Full-Stack Developer
+            </p>
+          </div>
+          <div className="flex flex-col gap-4 md:items-end">
+            <div className="flex gap-4 text-muted-foreground">
+              <a href="https://github.com/abdhullah-mn" aria-label="GitHub">
+                <Github className="size-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/abdhullah-noufal-042408336"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="size-4" />
+              </a>
+              <a href="mailto:abdnou076@gmail.com" aria-label="Email">
+                <Mail className="size-4" />
+              </a>
+              <a href="tel:+94752977706" aria-label="Phone">
+                <Phone className="size-4" />
+              </a>
+            </div>
+            <p className="font-mono text-[10px] text-muted-foreground">
+              © 2026 Abdhullah Noufal. Built with purpose.
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  );
 }
 
-function Field({ name, label, placeholder, maxLength, type = "text" }: { name: string; label: string; placeholder: string; maxLength: number; type?: string }) { return <label className="mt-5 block text-xs font-semibold first:mt-0 sm:first:mt-5">{label}<input name={name} type={type} maxLength={maxLength} required className="mt-2 block w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-hidden focus:border-cyan" placeholder={placeholder} /></label>; }
+function Field({
+  name,
+  label,
+  placeholder,
+  maxLength,
+  type = "text",
+}: {
+  name: string;
+  label: string;
+  placeholder: string;
+  maxLength: number;
+  type?: string;
+}) {
+  return (
+    <label className="mt-5 block text-xs font-semibold first:mt-0 sm:first:mt-5">
+      {label}
+      <input
+        name={name}
+        type={type}
+        maxLength={maxLength}
+        required
+        className="mt-2 block w-full rounded-md border border-input bg-background px-4 py-3 text-sm outline-hidden focus:border-cyan"
+        placeholder={placeholder}
+      />
+    </label>
+  );
+}
