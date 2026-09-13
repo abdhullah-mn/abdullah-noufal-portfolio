@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowDownRight, ArrowRight, CheckCircle2, Code2, Database, Download, ExternalLink, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Phone, Send, ServerCog, ShieldCheck, Terminal, X } from "lucide-react";
-import { useState, type FormEvent } from "react";
+import { ArrowDownRight, ArrowRight, CheckCircle2, Code2, Database, Download, ExternalLink, Github, GraduationCap, Layers3, Linkedin, Mail, Menu, Moon, Phone, Send, ServerCog, ShieldCheck, Sun, Terminal, X } from "lucide-react";
+import { useEffect, useState, type FormEvent } from "react";
 
 export const Route = createFileRoute("/")({
   head: () => ({ meta: [
@@ -32,6 +32,19 @@ function SectionHeading({ eyebrow, title, body }: { eyebrow: string; title: stri
 function Index() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [formError, setFormError] = useState("");
+  const [lightMode, setLightMode] = useState(false);
+  useEffect(() => {
+    const savedTheme = window.localStorage.getItem("portfolio-theme");
+    const shouldUseLightMode = savedTheme === "light";
+    setLightMode(shouldUseLightMode);
+    document.documentElement.classList.toggle("light", shouldUseLightMode);
+  }, []);
+  const toggleTheme = () => {
+    const nextLightMode = !lightMode;
+    setLightMode(nextLightMode);
+    document.documentElement.classList.toggle("light", nextLightMode);
+    window.localStorage.setItem("portfolio-theme", nextLightMode ? "light" : "dark");
+  };
   const submitContact = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault(); const form = new FormData(event.currentTarget);
     const name = String(form.get("name") ?? "").trim(); const email = String(form.get("email") ?? "").trim(); const subject = String(form.get("subject") ?? "").trim(); const message = String(form.get("message") ?? "").trim();
@@ -40,7 +53,7 @@ function Index() {
   };
 
   return <div className="min-h-screen overflow-x-hidden bg-background text-foreground">
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl"><nav className="section-shell flex h-18 items-center justify-between" aria-label="Main navigation"><Logo /><div className="hidden items-center gap-7 md:flex">{navItems.map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground">{item}</a>)}</div><a href="/Abdhullah-Noufal-CV.pdf" download className="hidden items-center gap-2 rounded-md border border-border px-4 py-2 text-xs font-semibold hover:border-coral hover:text-coral"><Download className="size-4" /> Download CV</a><button type="button" onClick={() => setMenuOpen(!menuOpen)} className="grid size-10 place-items-center rounded-md border border-border md:hidden" aria-label="Toggle navigation" aria-expanded={menuOpen}>{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button></nav>{menuOpen && <div className="border-t border-border bg-background px-4 py-5 md:hidden">{navItems.map(item => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block border-b border-border py-3 text-sm font-semibold">{item}</a>)}</div>}</header>
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-border bg-background/80 backdrop-blur-xl"><nav className="section-shell flex h-18 items-center justify-between" aria-label="Main navigation"><Logo /><div className="hidden items-center gap-7 md:flex">{navItems.map(item => <a key={item} href={`#${item.toLowerCase()}`} className="text-xs font-semibold text-muted-foreground transition-colors hover:text-foreground">{item}</a>)}<button type="button" onClick={toggleTheme} className="grid size-9 place-items-center rounded-md border border-border text-muted-foreground transition-colors hover:border-cyan hover:text-cyan" aria-label={lightMode ? "Switch to dark theme" : "Switch to light theme"} title={lightMode ? "Switch to dark theme" : "Switch to light theme"}>{lightMode ? <Moon className="size-4" /> : <Sun className="size-4" />}</button></div><a href="/Abdhullah-Noufal-CV.pdf" download className="hidden items-center gap-2 rounded-md border border-border px-4 py-2 text-xs font-semibold hover:border-coral hover:text-coral md:flex"><Download className="size-4" /> Download CV</a><button type="button" onClick={() => setMenuOpen(!menuOpen)} className="grid size-10 place-items-center rounded-md border border-border md:hidden" aria-label="Toggle navigation" aria-expanded={menuOpen}>{menuOpen ? <X className="size-5" /> : <Menu className="size-5" />}</button></nav>{menuOpen && <div className="border-t border-border bg-background px-4 py-5 md:hidden">{navItems.map(item => <a key={item} href={`#${item.toLowerCase()}`} onClick={() => setMenuOpen(false)} className="block border-b border-border py-3 text-sm font-semibold">{item}</a>)}<button type="button" onClick={toggleTheme} className="flex w-full items-center gap-2 border-b border-border py-3 text-left text-sm font-semibold text-cyan" aria-label={lightMode ? "Switch to dark theme" : "Switch to light theme"}>{lightMode ? <Moon className="size-4" /> : <Sun className="size-4" />}{lightMode ? "Dark theme" : "Light theme"}</button><a href="/Abdhullah-Noufal-CV.pdf" download onClick={() => setMenuOpen(false)} className="flex items-center gap-2 py-3 text-sm font-semibold text-coral"><Download className="size-4" /> Download CV</a></div>}</header>
 
     <main>
       <section id="home" className="section-shell relative grid min-h-[min(920px,100svh)] items-center gap-12 pb-20 pt-28 lg:grid-cols-[1.08fr_.92fr]">
