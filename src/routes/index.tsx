@@ -1,3 +1,7 @@
+import { ContactSection } from "../components/ContactSection";
+import { SpecializationSection } from "../components/SpecializationSection";
+import { SkillsSection } from "../components/SkillsSection";
+import { AboutSection } from "../components/AboutSection";
 import { createFileRoute } from "@tanstack/react-router";
 import {
   ArrowDownRight,
@@ -47,12 +51,6 @@ export const Route = createFileRoute("/")({
 });
 
 const navItems = ["Home", "About", "Skills", "Projects", "Services", "Contact"];
-const skillGroups = [
-  { title: "Programming", items: ["JavaScript", "TypeScript", "PHP", "Java", "C", "Python"] },
-  { title: "Frontend", items: ["React.js", "Next.js", "Tailwind CSS"] },
-  { title: "Backend", items: ["Node.js", "Express.js", "Laravel"] },
-  { title: "Data & delivery", items: ["MySQL", "MSSQL", "MongoDB", "Git", "Docker"] },
-];
 const projects = [
   {
     number: "01",
@@ -117,7 +115,7 @@ function SectionHeading({
   body?: string;
 }) {
   return (
-    <div className="mb-12 grid gap-4 md:grid-cols-2 md:items-end">
+    <div className="section-heading-spacing grid gap-4 md:grid-cols-2 md:items-end">
       <div>
         <p className="mb-3 font-mono text-xs uppercase text-coral">// {eyebrow}</p>
         <h2 className="text-3xl font-semibold text-foreground sm:text-5xl">{title}</h2>
@@ -128,6 +126,63 @@ function SectionHeading({
         </p>
       )}
     </div>
+  );
+}
+
+const heroRoles = ["Software Engineer", "Full-Stack Developer", "Backend Developer"] as const;
+
+function HeroRole() {
+  const [text, setText] = useState<string>(heroRoles[0]);
+
+  useEffect(() => {
+    const motionPreference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let timeout: ReturnType<typeof setTimeout> | undefined;
+    let roleIndex = 0;
+    let characterCount = heroRoles[0].length;
+    let deleting = true;
+
+    const tick = () => {
+      const phrase = heroRoles[roleIndex] ?? heroRoles[0];
+      characterCount += deleting ? -1 : 1;
+      setText(phrase.slice(0, characterCount));
+
+      let delay = deleting ? 40 : 75;
+      if (deleting && characterCount === 0) {
+        deleting = false;
+        roleIndex = (roleIndex + 1) % heroRoles.length;
+        delay = 400;
+      } else if (!deleting && characterCount === phrase.length) {
+        deleting = true;
+        delay = 1600;
+      }
+      timeout = setTimeout(tick, delay);
+    };
+
+    const restart = () => {
+      clearTimeout(timeout);
+      roleIndex = 0;
+      characterCount = heroRoles[0].length;
+      deleting = true;
+      setText(heroRoles[0]);
+      if (!motionPreference.matches) timeout = setTimeout(tick, 1600);
+    };
+
+    restart();
+    motionPreference.addEventListener("change", restart);
+    return () => {
+      clearTimeout(timeout);
+      motionPreference.removeEventListener("change", restart);
+    };
+  }, []);
+
+  return (
+    <p className="mt-6 text-lg font-semibold sm:text-xl">
+      <span className="sr-only">Software Engineer, Full-Stack Developer, Backend Developer</span>
+      <span className="hero-role" aria-hidden="true">
+        <span className="hero-role-spacer">Full-Stack Developer<span className="hero-role-cursor">|</span></span>
+        <span className="hero-role-text">{text}<span className="hero-role-cursor">|</span></span>
+      </span>
+    </p>
   );
 }
 
@@ -272,49 +327,45 @@ function Index() {
       <main>
         <section
           id="home"
-          className="section-shell relative grid min-h-[min(920px,100svh)] items-center gap-12 pb-20 pt-28 lg:grid-cols-[1.08fr_.92fr]"
+          className="hero-section"
         >
-          <div className="rise-in relative z-10">
-            <div className="mb-7 inline-flex items-center gap-2 rounded-full border border-coral/30 bg-coral/10 px-3 py-1.5 text-xs font-semibold text-coral">
-              <span className="size-2 rounded-full bg-coral" /> Seeking a Software Engineering
+          <div className="section-shell hero-layout">
+          <div className="hero-copy relative z-10">
+            <div className="hero-availability mb-6 inline-flex items-center gap-2 rounded-full border border-coral/30 bg-coral/10 px-3 py-1.5 text-xs font-semibold text-coral">
+              <span className="hero-status-dot size-1.5 rounded-full bg-coral" /> Seeking a Software Engineering
               Internship
             </div>
-            <p className="mb-4 font-mono text-sm text-cyan">Hello, I&apos;m</p>
-            <h1 className="text-5xl font-bold leading-[.98] sm:text-7xl lg:text-[5.5rem]">
-              Abdhullah
-              <br />
-              <span className="text-coral">Noufal.</span>
+            <p className="mb-3 font-mono text-sm text-muted-foreground">Hello, I&apos;m</p>
+            <h1 className="hero-name font-bold">
+              <span className="hero-name-line">Abdullah</span>
+              <span className="hero-name-line text-coral">Noufal.</span>
             </h1>
-            <p className="mt-6 text-lg font-semibold sm:text-xl">
-              Aspiring Software Engineer <span className="text-muted-foreground">/</span> Full-Stack
-              Developer
+            <HeroRole />
+            <p className="hero-description mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
+              Information Technology undergraduate at the University of Moratuwa, focused on
+              building reliable software and growing through practical engineering projects.
             </p>
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-muted-foreground sm:text-base">
-              B.Sc. (Hons) in Information Technology student at the University of Moratuwa,
-              passionate about building reliable software, solving challenging technical problems,
-              and continuously improving engineering practices.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="hero-actions mt-7 flex flex-wrap gap-3">
               <a
                 href="#projects"
-                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5"
+                className="inline-flex items-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground hero-button"
               >
                 View my projects <ArrowDownRight className="size-4" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 rounded-md border border-border bg-secondary px-5 py-3 text-sm font-bold transition-colors hover:border-cyan"
+                className="inline-flex items-center gap-2 rounded-md border border-border bg-secondary px-5 py-3 text-sm font-bold hero-button"
               >
                 Contact me <ArrowRight className="size-4" />
               </a>
             </div>
-            <div className="mt-9 flex items-center gap-4 text-muted-foreground">
+            <div className="hero-socials mt-7 flex flex-wrap items-center gap-4 text-muted-foreground">
               <a
                 href="https://github.com/abdhullah-mn"
                 target="_blank"
                 rel="noreferrer"
                 aria-label="GitHub"
-                className="hover:text-cyan"
+                className="hero-social-link"
               >
                 <Github className="size-5" />
               </a>
@@ -323,135 +374,36 @@ function Index() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="LinkedIn"
-                className="hover:text-cyan"
+                className="hero-social-link"
               >
                 <Linkedin className="size-5" />
               </a>
-              <a href="mailto:abdnou076@gmail.com" aria-label="Email" className="hover:text-cyan">
+              <a href="mailto:abdnou076@gmail.com" aria-label="Email" className="hero-social-link">
                 <Mail className="size-5" />
               </a>
               <span className="h-px w-12 bg-border" />
               <span className="font-mono text-[11px]">Colombo, Sri Lanka</span>
             </div>
           </div>
-          <div className="relative mx-auto w-full max-w-lg rise-in [animation-delay:140ms]">
-            <div className="absolute -right-4 -top-4 size-24 border-r border-t border-cyan/50" />
-            <div className="glass-panel relative rounded-lg p-6 sm:p-8">
+          <div className="hero-portrait">
               <img
-                src="https://i.postimg.cc/wjL2wW42/my-portfolio-image.jpg"
-                alt="Abdhullah Noufal"
-                className="mx-auto aspect-square w-full max-w-[22rem] rounded-full object-cover"
+                src="/portrait-cutout.png"
+                alt="Abdullah Noufal wearing a suit"
+                width={1254}
+                height={1254}
+                fetchPriority="high"
+                decoding="async"
+                className="hero-portrait-image"
               />
-              <div className="mt-6 rounded-md border border-border bg-background/80 p-4 backdrop-blur-md">
-                <div className="mb-3 flex items-center gap-2 text-[10px] text-muted-foreground">
-                  <span className="size-2 rounded-full bg-coral" />
-                  <span className="size-2 rounded-full bg-accent" />
-                  <span className="size-2 rounded-full bg-muted-foreground" />
-                  <span className="ml-2 font-mono">profile.ts</span>
-                </div>
-                <code className="block font-mono text-[11px] leading-6 text-muted-foreground">
-                  <span className="text-coral">const</span> focus ={" "}
-                  <span className="text-cyan">&quot;full-stack engineering&quot;</span>;<br />
-                  <span className="text-coral">const</span> mindset ={" "}
-                  <span className="text-cyan">&quot;build, learn, improve&quot;</span>;
-                  <span className="cursor-blink text-coral">_</span>
-                </code>
-              </div>
-            </div>
+          </div>
           </div>
         </section>
 
-        <section id="about" className="border-y border-border bg-surface/40 py-24 sm:py-32">
-          <div className="section-shell">
-            <SectionHeading
-              eyebrow="About"
-              title="Engineering curiosity, grounded in practice."
-              body="More than a list of tools: a growing engineering mindset shaped by hands-on building, careful problem solving, and a commitment to maintainable software."
-            />
-            <div className="grid gap-5 lg:grid-cols-[1.25fr_.75fr]">
-              <article className="glass-panel rounded-lg p-7 sm:p-9">
-                <p className="text-lg leading-8 text-secondary-foreground">
-                  I&apos;m an Information Technology undergraduate at the{" "}
-                  <strong className="text-foreground">University of Moratuwa</strong> with a strong
-                  interest in software engineering and full-stack development. I enjoy turning
-                  technical problems into reliable, readable solutions across interfaces, APIs, and
-                  data.
-                </p>
-                <p className="mt-6 text-sm leading-7 text-muted-foreground">
-                  I&apos;m currently seeking my first Software Engineering Internship—a place to
-                  contribute to real projects, collaborate with experienced developers, and keep
-                  improving how I design and build software.
-                </p>
-                <div className="mt-8 flex flex-wrap gap-2">
-                  {[
-                    "Problem solving",
-                    "Reliable software",
-                    "Clean code",
-                    "SOLID principles",
-                    "Continuous learning",
-                  ].map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded border border-border bg-secondary px-3 py-2 font-mono text-xs text-muted-foreground"
-                    >
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </article>
-              <article className="rounded-lg border border-border bg-card p-7 sm:p-9">
-                <div className="flex items-start justify-between">
-                  <GraduationCap className="size-8 text-cyan" />
-                  <span className="rounded-full bg-cyan/10 px-3 py-1 font-mono text-[10px] font-bold uppercase text-cyan">
-                    Currently studying
-                  </span>
-                </div>
-                <p className="mt-12 font-mono text-xs text-coral">2024 — 2028</p>
-                <h3 className="mt-3 text-2xl font-semibold">
-                  B.Sc. (Hons) in Information Technology
-                </h3>
-                <p className="mt-3 text-sm text-muted-foreground">University of Moratuwa</p>
-                <div className="mt-8 border-t border-border pt-5">
-                  <p className="text-xs text-muted-foreground">Expected graduation</p>
-                  <p className="mt-1 font-semibold">May 2028</p>
-                </div>
-              </article>
-            </div>
-          </div>
-        </section>
+        <AboutSection />
 
-        <section id="skills" className="section-shell py-24 sm:py-32">
-          <SectionHeading
-            eyebrow="Technical foundation"
-            title="Tools for the full stack."
-            body="A broad programming foundation with particular emphasis on the JavaScript and TypeScript ecosystem."
-          />
-          <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border md:grid-cols-2">
-            {skillGroups.map((group, index) => (
-              <article
-                key={group.title}
-                className="bg-background p-7 transition-colors hover:bg-card sm:p-8"
-              >
-                <div className="mb-8 flex items-center justify-between">
-                  <h3 className="text-lg font-semibold">{group.title}</h3>
-                  <span className="font-mono text-xs text-muted-foreground">0{index + 1}</span>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((skill) => (
-                    <span
-                      key={skill}
-                      className={`rounded-md border px-3 py-2 text-xs font-semibold transition-colors hover:border-cyan hover:text-cyan ${["JavaScript", "TypeScript", "React.js", "Node.js"].includes(skill) ? "border-coral/40 bg-coral/10 text-coral" : "border-border bg-secondary"}`}
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
+        <SkillsSection />
 
-        <section id="projects" className="border-y border-border bg-surface/40 py-24 sm:py-32">
+        <section id="projects" className="section-rhythm border-y border-border bg-surface/40">
           <div className="section-shell">
             <SectionHeading
               eyebrow="Selected work"
@@ -462,7 +414,7 @@ function Index() {
               {projects.map((project) => (
                 <article
                   key={project.title}
-                  className={`group rounded-lg border bg-card p-6 transition-all duration-300 hover:-translate-y-1 hover:border-cyan/50 sm:p-9 ${project.featured ? "border-coral/50" : "border-border"}`}
+                  className={`hover-lift group rounded-lg border bg-card p-6 sm:p-9 ${project.featured ? "border-coral/50" : "border-border"}`}
                 >
                   <div className="grid gap-8 lg:grid-cols-[.8fr_1.4fr_.8fr]">
                     <div>
@@ -514,79 +466,9 @@ function Index() {
           </div>
         </section>
 
-        <section id="services" className="section-shell py-24 sm:py-32">
-          <SectionHeading
-            eyebrow="Specialization"
-            title="Full-stack, end to end."
-            body="The ability to contribute across the layers of a modern web application—from interface decisions to APIs, data, and containerized delivery."
-          />
-          <div className="grid gap-5 lg:grid-cols-[1.15fr_.85fr]">
-            <article className="rounded-lg border border-coral/40 bg-card p-8 sm:p-10">
-              <Layers3 className="size-9 text-coral" />
-              <h3 className="mt-10 text-3xl font-semibold">Full-Stack Development</h3>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-muted-foreground">
-                Building cohesive web applications across React interfaces, Node and Laravel
-                backends, REST APIs, databases, and Docker-based delivery environments.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-2">
-                {[
-                  "React.js",
-                  "Next.js",
-                  "Node.js",
-                  "Express.js",
-                  "TypeScript",
-                  "MongoDB",
-                  "MySQL",
-                  "Laravel",
-                  "REST APIs",
-                  "Docker",
-                ].map((item) => (
-                  <span
-                    key={item}
-                    className="rounded border border-border bg-secondary px-3 py-2 font-mono text-xs"
-                  >
-                    {item}
-                  </span>
-                ))}
-              </div>
-            </article>
-            <div className="grid gap-px overflow-hidden rounded-lg border border-border bg-border sm:grid-cols-2 lg:grid-cols-1">
-              {[
-                [
-                  Code2,
-                  "Frontend implementation",
-                  "Responsive, accessible interfaces built around clear product flows.",
-                ],
-                [
-                  ServerCog,
-                  "API & backend architecture",
-                  "Structured REST endpoints, authentication flows, and maintainable server logic.",
-                ],
-                [
-                  Database,
-                  "Data integration",
-                  "Application data modeled across relational and document databases.",
-                ],
-                [
-                  ShieldCheck,
-                  "Reliable delivery",
-                  "Version-controlled, containerized workflows with an eye toward CI/CD.",
-                ],
-              ].map(([Icon, title, text]) => {
-                const SkillIcon = Icon as typeof Code2;
-                return (
-                  <div key={String(title)} className="bg-background p-5">
-                    <SkillIcon className="size-5 text-cyan" />
-                    <h4 className="mt-4 text-sm font-semibold">{String(title)}</h4>
-                    <p className="mt-2 text-xs leading-5 text-muted-foreground">{String(text)}</p>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <SpecializationSection />
 
-        <section className="border-y border-border bg-card py-20">
+        <section className="section-rhythm border-y border-border bg-card">
           <div className="section-shell grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-center">
             <div className="flex items-center gap-4">
               <Terminal className="size-7 text-cyan" />
@@ -607,110 +489,15 @@ function Index() {
           </div>
         </section>
 
-        <section id="contact" className="section-shell py-24 sm:py-32">
-          <SectionHeading
-            eyebrow="Contact"
-            title="Let’s build something meaningful."
-            body="I'm currently looking for a Software Engineering Internship where I can contribute, learn from experienced engineers, and grow through real-world software development."
-          />
-          <div className="grid gap-12 lg:grid-cols-[.8fr_1.2fr]">
-            <div>
-              <div className="space-y-5">
-                {[
-                  [Mail, "Email", "abdnou076@gmail.com", "mailto:abdnou076@gmail.com"],
-                  [Phone, "Phone", "075 297 7706", "tel:+94752977706"],
-                  [
-                    Linkedin,
-                    "LinkedIn",
-                    "Connect professionally",
-                    "https://www.linkedin.com/in/abdhullah-noufal-042408336",
-                  ],
-                  [Github, "GitHub", "Explore the code", "https://github.com/abdhullah-mn"],
-                ].map(([Icon, label, value, href]) => {
-                  const ContactIcon = Icon as typeof Mail;
-                  const external = String(href).startsWith("http");
-                  return (
-                    <a
-                      key={String(label)}
-                      href={String(href)}
-                      target={external ? "_blank" : undefined}
-                      rel={external ? "noreferrer" : undefined}
-                      className="group flex items-center gap-4 border-b border-border pb-5"
-                    >
-                      <span className="grid size-10 place-items-center rounded-md bg-secondary text-cyan">
-                        <ContactIcon className="size-4" />
-                      </span>
-                      <span>
-                        <span className="block text-[10px] uppercase text-muted-foreground">
-                          {String(label)}
-                        </span>
-                        <span className="mt-1 block text-sm font-semibold group-hover:text-cyan">
-                          {String(value)}
-                        </span>
-                      </span>
-                      <ArrowRight className="ml-auto size-4 text-muted-foreground" />
-                    </a>
-                  );
-                })}
-              </div>
-              <p className="mt-8 font-mono text-xs text-muted-foreground">
-                Colombo, Sri Lanka · Open to internship opportunities
-              </p>
-            </div>
-            <form onSubmit={submitContact} className="glass-panel rounded-lg p-6 sm:p-8" noValidate>
-              <div className="grid gap-5 sm:grid-cols-2">
-                <Field name="name" label="Name" placeholder="Your name" maxLength={100} />
-                <Field
-                  name="email"
-                  label="Email"
-                  placeholder="you@example.com"
-                  maxLength={255}
-                  type="email"
-                />
-              </div>
-              <Field
-                name="subject"
-                label="Subject"
-                placeholder="Internship opportunity"
-                maxLength={120}
-              />
-              <label className="mt-5 block text-xs font-semibold">
-                Message
-                <textarea
-                  name="message"
-                  maxLength={1500}
-                  required
-                  rows={5}
-                  className="mt-2 block w-full resize-none rounded-md border border-input bg-background px-4 py-3 text-sm outline-hidden focus:border-cyan"
-                  placeholder="Tell me about the opportunity..."
-                />
-              </label>
-              {formError && (
-                <p role="alert" className="mt-4 text-xs text-coral">
-                  {formError}
-                </p>
-              )}
-              {formSuccess && (
-                <p role="status" className="mt-4 text-xs text-cyan">
-                  {formSuccess}
-                </p>
-              )}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="mt-6 inline-flex w-full items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-bold text-primary-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-60"
-              >
-                {isSubmitting ? "Sending..." : "Send message"} <Send className="size-4" />
-              </button>
-              <p className="mt-3 text-center text-[10px] text-muted-foreground">
-                Your message will be sent securely through Formspree.
-              </p>
-            </form>
-          </div>
-        </section>
+        <ContactSection
+          onSubmit={submitContact}
+          error={formError}
+          success={formSuccess}
+          isSubmitting={isSubmitting}
+        />
       </main>
       <footer className="border-t border-border bg-card">
-        <div className="section-shell flex flex-col gap-7 py-10 md:flex-row md:items-end md:justify-between">
+        <div className="footer-rhythm section-shell flex flex-col gap-7 md:flex-row md:items-end md:justify-between">
           <div>
             <Logo />
             <p className="mt-3 text-xs text-muted-foreground">
